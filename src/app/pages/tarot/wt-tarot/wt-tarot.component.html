@@ -1,0 +1,52 @@
+<div>
+    <h2>大阿尔卡纳（Major Arcana）</h2>
+    <div nz-row [nzGutter]="[16, 24]">
+        <ng-container *ngFor="let i of wtTarotMajor">
+            <div nz-col class="gutter-row" [nzSpan]="2">
+                <button class="button" nz-button nzType="dashed" (click)="openDrawer(i)">{{i.id }} &nbsp; {{ i.text
+                    }}</button>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<div class="minor_box">
+    <h2>小阿尔卡纳（Minor Arcana）</h2>
+    <div nz-row [nzGutter]="[16, 24]" *ngFor="let i of wtTarotMinor">
+        <ng-container *ngFor="let j of i">
+            <div nz-col class="gutter-row" [nzSpan]="2">
+                <button class="button" nz-button nzType="dashed">{{ j.text }}</button>
+            </div>
+        </ng-container>
+        <nz-divider></nz-divider>
+    </div>
+</div>
+
+<nz-drawer [nzSize]="'large'" [nzWidth]="'960px'" [nzVisible]="visible" nzPlacement="right" [nzClosable]="false"
+    [nzMaskClosable]="true" [nzMask]="true" [nzTitle]="data.text" (nzOnClose)="close()">
+    <ng-container *nzDrawerContent>
+        <div style="text-align: center;">
+            <img width="150px" nz-image [src]="data.img" alt="" />
+        </div>
+        <!-- <img src="{}" alt=""> -->
+        <nz-descriptions nzTitle=" {{data.text}}" nzBordered nzLayout="vertical" [nzSize]="'small'">
+            <nz-descriptions-item nzTitle="牌名">{{ data.text }}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="关键词" [nzSpan]="2">{{ data.detail }}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="图案解析" [nzSpan]="3">
+                <ng-container *ngFor="let i of data.imgDetail">
+                    <span nz-typography>{{i}}</span><br>
+                </ng-container>
+            </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="牌义推理" [nzSpan]="3">
+                <ng-container *ngFor="let i of data.details">
+                    <span nz-typography>{{i}}</span><br>
+                </ng-container>
+            </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="个人经验" [nzSpan]="3">
+                <ng-container *ngFor="let i of data.note">
+                    <span nz-typography>{{i}}</span><br>
+                </ng-container>
+            </nz-descriptions-item>
+
+        </nz-descriptions>
+    </ng-container>
+</nz-drawer>
