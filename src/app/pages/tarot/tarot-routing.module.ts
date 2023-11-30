@@ -5,7 +5,7 @@ import { HyTarotComponent } from './hy-tarot/hy-tarot.component';
 
 const routes: Routes = [
   { path: 'wt-tarot', component: WtTarotComponent },
-  { path: 'ht-tarot', component: HyTarotComponent },
+  { path: 'hy-tarot', component: HyTarotComponent },
 ];
 
 @NgModule({

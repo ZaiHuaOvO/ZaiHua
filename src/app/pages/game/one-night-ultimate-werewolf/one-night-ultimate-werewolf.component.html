@@ -1,0 +1,139 @@
+<div>
+  <span>请选择游戏人数：</span>
+  <nz-select [(ngModel)]="personNum" style="width: 100px;" [nzDisabled]="current != -1" nzPlaceHolder="5"
+    nzTooltipTitle="游戏开始后无法更换人数" nzTooltipPlacement="top" nz-tooltip>
+    <nz-option nzValue=4 nzLabel="4"></nz-option>
+    <nz-option nzValue=5 nzLabel="5"></nz-option>
+  </nz-select>
+  <button nzTooltipTitle="开始一局新的游戏" nzTooltipPlacement="top" nz-button nz-tooltip nzType="primary"
+    style="margin-left: 10px;width: 80px;" (click)="start()" *ngIf="current == -1">确认</button>
+  <button nzType="default" style="margin-left: 10px;width: 80px;" (click)="reset()" nzTooltipTitle="重新开始一局"
+    nzTooltipPlacement="top" nz-button nz-tooltip>重开</button>
+  <button nzTooltipTitle="重新分配身份" nzTooltipPlacement="top" nz-button nz-tooltip nzType="default"
+    style="margin-left: 10px;width: 80px;" (click)="resetGod()" *ngIf="current==0">重ROLL</button>
+</div>
+<nz-divider></nz-divider>
+<nz-steps [nzCurrent]="current">
+  <nz-step nzTitle="分配身份"></nz-step>
+  <nz-step nzTitle="狼先知"></nz-step>
+  <nz-step nzTitle="爪牙"></nz-step>
+  <nz-step nzTitle="预言家"></nz-step>
+  <nz-step nzTitle="强盗"></nz-step>
+  <nz-step nzTitle="女巫"></nz-step>
+  <nz-step nzTitle="捣蛋鬼"></nz-step>
+  <nz-step nzTitle="酒鬼"></nz-step>
+  <nz-step nzTitle="失眠者"></nz-step>
+  <nz-step nzTitle="结束"></nz-step>
+</nz-steps>
+
+<div class="steps-content">
+  <div class="god" *ngIf="current == 0">
+    <p>
+      夜幕降临，《花》女仆咖啡厅各个房间的门逐渐关上。<br>
+      店长站在大厅中央念念有词，面前的魔法水晶球忽明忽暗，房间门上也开始浮现出所住之人的身份牌，游戏又一次开始了。<br>
+      身份配置如下：<br>
+      <strong *ngFor="let person of Bright; let i=index">
+        {{i + 1}}号-{{person}}<br>
+      </strong>
+    </p>
+  </div>
+  <div class="god" *ngIf="current == 1">
+    水晶球里狼先知的脸庞从虚到实，狼面具下深邃的目光直勾勾的看着店长。<br>
+    “这次你想查验谁的身份？告诉我ta的号数。”<br>
+    <nz-select [(ngModel)]="god1" name="god1" style="width: 200px;margin-top: 10px;" [nzDisabled]="isGod1">
+      <nz-option *ngFor="let option of Bright; let i=index" [nzValue]='i+1' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+  </div>
+  <div class="god" *ngIf="current == 2">
+    爪牙迫不及待的脸出现在水晶球中，脸上触目惊心的抓痕反而显得有些怪异<br>
+    “接下来我会将狼先知的号数告诉你“<br>
+    “如果场上没有狼先知，你则是好人阵营，即使场上出现了狼先知牌，你也需要将它投出去“<br><br>
+    <strong>狼先知的号数为{{god1Num}}号</strong><br><br>
+    <strong *ngIf="god2Num == 0" style="color: red;">本局没有爪牙</strong>
+  </div>
+  <div class="god" *ngIf="current == 3">
+    预言家拿着书本在水晶球中自言自语<br>
+    “考虑清楚了吗，这次你想查验卡池里的牌，还是查验某个人的身份？”<br>
+    “请告诉我“卡池”(查验卡池)或“某位玩家的号数”(查验具体的某个人)二选一”<br>
+    <nz-select [(ngModel)]="god3" style="width: 200px;margin-top: 10px;" [nzDisabled]="god3Num === 0">
+      <nz-option [nzValue]=99 nzLabel="查验卡池"></nz-option>
+      <nz-option *ngFor="let option of Bright; let i=index" [nzValue]='i+1' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+  </div>
+  <div class="god" *ngIf="current == 4">
+    强盗或许只对金钱财宝感兴趣，轮到他了也依旧一脸不屑<br>
+    “别急，虽然没有财宝，但是你可以抢夺别人的身份牌（笑），<br>
+    你想查看谁的身份牌并将自己的牌和对方进行交换？告诉我ta的号数”<br>
+    <nz-select [(ngModel)]="god4" style="width: 200px;margin-top: 10px;" [nzDisabled]="god4Num === 0">
+      <nz-option *ngFor="let option of Bright; let i=index" nzValue='{{i+1}}' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+  </div>
+  <div class="god" *ngIf="current == 5">
+    女巫合上了厚厚的炼金术书籍，扶了扶自己的镜框<br>
+    “接下来我会告诉你卡池中随机一张身份牌，你要将它和谁的身份牌进行交换，告诉我ta的号数”<br><br>
+    <strong *ngIf="god5Num !== 0">女巫看到的是：{{ god5random }}</strong><br>
+    <strong *ngIf="god5Num !== 0">交换的号数是？</strong><br>
+    <nz-select [(ngModel)]="god5" style="width: 200px;margin-top: 10px;" [nzDisabled]="god5Num === 0">
+      <nz-option *ngFor="let option of Bright; let i=index" nzValue='{{i+1}}' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+  </div>
+  <div class="god" *ngIf="current == 6">
+    捣蛋鬼在房间里上蹿下跳，就像有无限的精力<br>
+    “你想交换哪两个人的身份牌，告诉我两个人的号数”<br>
+    <nz-select [(ngModel)]="god61" style="width: 200px;margin-top: 10px;" [nzDisabled]="god6Num === 0">
+      <nz-option *ngFor="let option of Bright; let i=index" nzValue='{{i+1}}' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+    <br>
+    <nz-select [(ngModel)]="god62" style="width: 200px;margin-top: 10px;" [nzDisabled]="god6Num === 0">
+      <nz-option *ngFor="let option of Bright; let i=index" nzValue='{{i+1}}' nzLabel="{{i+1}}号"></nz-option>
+    </nz-select>
+  </div>
+  <div class="god" *ngIf="current == 7">
+    酒鬼的鼾声从水晶球中传了出来，店长皱了皱眉，从卡池里拿出一张牌丢进了水晶球<br>
+    “你的身份牌和卡池中随机的一张身份牌进行了交换，但是你睡死了并不知道是什么，等最后的时候你自然就会知道了……”<br><br>
+    <strong *ngIf="god7Num !== 0">酒鬼拿到的身份牌是：{{god7random}}</strong><br>
+    <strong *ngIf="god7Num == 0" style="color: red;">本局没有酒鬼</strong>
+  </div>
+  <div class="god" *ngIf="current == 8">
+    失眠者眨了眨充满血丝的眼睛，打开房门看了眼门上若隐若现的身份牌，然后快速的关上门回到了屋内<br><br>
+    <strong *ngIf="god8Num !== 0">失眠者当前的身份是：{{god8random}}</strong><br>
+    <strong *ngIf="god8Num == 0" style="color: red;">本局没有失眠者</strong>
+  </div>
+  <div class="god" *ngIf="current == 9">
+    店长看着逐渐暗淡下来的水晶球：“好好入睡吧，或许是最后一觉了呢？”，然后轻轻打了一个响指离开了店内
+  </div>
+</div>
+<div class="steps-action">
+  <!-- <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+    <span>Previous</span>
+  </button> -->
+  <button nz-button nzType="default" (click)="next(current)" *ngIf="current < 9 && current != -1" style="width: 200px;">
+    <span>Next</span>
+  </button>
+  <button nzTooltipTitle="请手动复制文字粘贴至游戏宏内" nzTooltipPlacement="right" nz-button nz-tooltip nz-button nzType="primary"
+    (click)="done()" *ngIf="current === 9">
+    <span>生成复盘宏</span>
+  </button>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="复盘宏" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+      <strong *ngFor="let result of review">
+        {{result}} <br>
+      </strong>
+    </ng-container>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">返回</button>
+      <!-- <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">一键复制</button> -->
+    </div>
+  </nz-modal>
+</div>
+
+<div *ngIf="Bright.length > 0" style="margin-top: 24px;">
+  <!-- 初始身份为:
+  <span *ngFor="let person of BrightFirst; let i=index">
+    {{i + 1}}号-{{person}},
+  </span><br>
+  身份池中的身份牌为：{{Dark}}<br> -->
+  <strong *ngFor="let result of Result">
+    {{result}} <br><br>
+  </strong>
+</div>
