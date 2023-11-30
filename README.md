@@ -1,27 +1,31 @@
-# ZaiHua
+# 再花的工具箱
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+## 项目网址
 
-## Development server
+<https://zaihuaovo.github.io/ZaiHua/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 项目介绍
 
-## Code scaffolding
+本项目仅自用，架构为类ERP系统，集成我自己需要的多种功能，例如塔罗牌牌义查询、游戏工具等等。
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+技术栈仅使用静态前端，不搭载后端、服务器和数据库，所需的简单数据均存放在本地（都是安全的）
 
-## Build
+更新日志会持续更新在README中，详情可在git日志中查看，里面会有更细的提交粒度。
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 技术栈
 
-## Running unit tests
+> Angular：v16.0.0
+>
+> Node：v18.10.0
+>
+> npm：v8.19.2
+>
+> ng-zorro：v16.2.2
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# 更新日志
 
-## Running end-to-end tests
+## 2023.11.30
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+确定技术栈和版本，项目创建，引入ng-zorro的sidemenu模板。
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+引入angular-cli-ghpages，可一键部署到Github Pages。
