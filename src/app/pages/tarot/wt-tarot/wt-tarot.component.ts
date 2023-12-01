@@ -14,11 +14,16 @@ export class WtTarotComponent {
   data = {
     text: '',
     id: '',
-    detail: '',
+    detail: {
+      upright: '',
+      reversed: ''
+    },
     note: '',
     img: '',
     imgDetail: [],
-    details: []
+    details: [],
+    upright: '',
+    reversed: ''
   };
   constructor(
   ) {
@@ -39,11 +44,16 @@ export class WtTarotComponent {
     this.data = {
       text: '',
       id: '',
-      detail: '',
+      detail: {
+        upright: '',
+        reversed: ''
+      },
       note: '',
       img: '',
       imgDetail: [],
-      details: []
+      details: [],
+      upright: '',
+      reversed: ''
     };
   }
 }

@@ -22,26 +22,37 @@
 </div>
 
 <nz-drawer [nzSize]="'large'" [nzWidth]="'960px'" [nzVisible]="visible" nzPlacement="right" [nzClosable]="false"
-    [nzMaskClosable]="true" [nzMask]="true" [nzTitle]="data.text" (nzOnClose)="close()">
+    [nzMaskClosable]="true" [nzMask]="true" [nzTitle]="'韦特塔罗'" (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
         <div style="text-align: center;">
-            <img width="150px" nz-image [src]="data.img" alt="" />
+            <!-- <img width="150px" nz-image [src]="data.img" alt="" /> -->
         </div>
         <!-- <img src="{}" alt=""> -->
-        <nz-descriptions nzTitle=" {{data.text}}" nzBordered nzLayout="vertical" [nzSize]="'small'">
+        <nz-descriptions nzTitle="{{data.text}}" nzBordered nzLayout="vertical" [nzSize]="'small'" [nzColumn]="1">
             <nz-descriptions-item nzTitle="牌名">{{ data.text }}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="关键词" [nzSpan]="2">{{ data.detail }}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="图案解析" [nzSpan]="3">
+            <nz-descriptions-item nzTitle="正位关键词">{{ data.detail['upright'] }}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="逆位关键词">{{ data.detail['reversed'] }}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="图案解析">
                 <ng-container *ngFor="let i of data.imgDetail">
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
             </nz-descriptions-item>
-            <nz-descriptions-item nzTitle="牌义推理" [nzSpan]="3">
+            <nz-descriptions-item nzTitle="牌义推理">
                 <ng-container *ngFor="let i of data.details">
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
             </nz-descriptions-item>
-            <nz-descriptions-item nzTitle="个人经验" [nzSpan]="3">
+            <nz-descriptions-item nzTitle="正位牌义">
+                <ng-container *ngFor="let i of data.details">
+                    <span nz-typography>{{i}}</span><br>
+                </ng-container>
+            </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="逆位牌义">
+                <ng-container *ngFor="let i of data.details">
+                    <span nz-typography>{{i}}</span><br>
+                </ng-container>
+            </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="个人经验">
                 <ng-container *ngFor="let i of data.note">
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
