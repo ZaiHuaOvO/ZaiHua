@@ -21,7 +21,6 @@ export class WtTarotComponent {
     note: '',
     img: '',
     imgDetail: [],
-    details: [],
     upright: '',
     reversed: ''
   };
@@ -51,7 +50,6 @@ export class WtTarotComponent {
       note: '',
       img: '',
       imgDetail: [],
-      details: [],
       upright: '',
       reversed: ''
     };

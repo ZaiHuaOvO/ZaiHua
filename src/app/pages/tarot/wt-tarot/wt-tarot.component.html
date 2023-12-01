@@ -25,7 +25,7 @@
     [nzMaskClosable]="true" [nzMask]="true" [nzTitle]="'韦特塔罗'" (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
         <div style="text-align: center;">
-            <!-- <img width="150px" nz-image [src]="data.img" alt="" /> -->
+            <img width="150px" nz-image [src]="data.img" alt="" />
         </div>
         <!-- <img src="{}" alt=""> -->
         <nz-descriptions nzTitle="{{data.text}}" nzBordered nzLayout="vertical" [nzSize]="'small'" [nzColumn]="1">
@@ -37,18 +37,13 @@
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
             </nz-descriptions-item>
-            <nz-descriptions-item nzTitle="牌义推理">
-                <ng-container *ngFor="let i of data.details">
-                    <span nz-typography>{{i}}</span><br>
-                </ng-container>
-            </nz-descriptions-item>
             <nz-descriptions-item nzTitle="正位牌义">
-                <ng-container *ngFor="let i of data.details">
+                <ng-container *ngFor="let i of data.upright">
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
             </nz-descriptions-item>
             <nz-descriptions-item nzTitle="逆位牌义">
-                <ng-container *ngFor="let i of data.details">
+                <ng-container *ngFor="let i of data.reversed">
                     <span nz-typography>{{i}}</span><br>
                 </ng-container>
             </nz-descriptions-item>
