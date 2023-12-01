@@ -16,14 +16,21 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography'
   imports: [
     CommonModule,
     NzGridModule,
-    TarotRoutingModule,
     NzDividerModule,
     NzButtonModule,
     NzDrawerModule,
     NzDescriptionsModule,
-    NzTypographyModule
+    NzTypographyModule,
+
+    TarotRoutingModule,
   ],
-  declarations: [WtTarotComponent, HyTarotComponent],
-  exports: []
+  declarations: [
+    WtTarotComponent,
+    HyTarotComponent
+  ],
+  exports: [
+    WtTarotComponent,
+    HyTarotComponent
+  ]
 })
 export class TarotModule { }

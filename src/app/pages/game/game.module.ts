@@ -28,7 +28,6 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     FormsModule,
     ReactiveFormsModule,
     NzGridModule,
-    GameRoutingModule,
     NzDividerModule,
     NzButtonModule,
     NzDrawerModule,
@@ -49,8 +48,9 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzMessageModule,
     NzToolTipModule,
 
+    GameRoutingModule,
   ],
   declarations: [OneNightUltimateWerewolfComponent],
-  exports: []
+  exports: [OneNightUltimateWerewolfComponent]
 })
 export class GameModule { }
