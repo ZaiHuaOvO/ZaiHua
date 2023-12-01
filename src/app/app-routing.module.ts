@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HyTarotComponent } from './pages/tarot/hy-tarot/hy-tarot.component';
+import { WtTarotComponent } from './pages/tarot/wt-tarot/wt-tarot.component';
+import { WelcomeComponent } from './pages/welcome/welcomecomponent';
+import { OneNightUltimateWerewolfComponent } from './pages/game/one-night-ultimate-werewolf/one-night-ultimate-werewolf.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
-  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-  { path: 'tarot', loadChildren: () => import('./pages/tarot/tarot.module').then(m => m.TarotModule) },
-  { path: 'game', loadChildren: () => import('./pages/game/game.module').then(m => m.GameModule) },
+
+  { path: 'welcome', component: WelcomeComponent },
+
+  { path: 'tarot/wt-tarot', component: WtTarotComponent },
+  { path: 'tarot/hy-tarot', component: HyTarotComponent },
+
+  { path: 'game/wolf-kill', component: OneNightUltimateWerewolfComponent },
 ];
 
 @NgModule({
