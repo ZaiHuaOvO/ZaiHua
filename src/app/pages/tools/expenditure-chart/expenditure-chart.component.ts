@@ -167,9 +167,8 @@ export class ExpenditureChartComponent {
       })
     });
   }
+  // 柱形图加载
   initCharts2(valueArray: any, nameArray: any, name: string, value: any): void {
-    console.log('nameArray: ', nameArray);
-    console.log('valueArray: ', valueArray);
     echarts.init(document.getElementById('lineChart2')).setOption({
       title: {
         text: `${name}的具体支出，总￥${value}元`,
