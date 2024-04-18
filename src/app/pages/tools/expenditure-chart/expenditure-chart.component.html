@@ -1,0 +1,10 @@
+<div style="width: 100%;box-sizing: border-box;">
+    <div nz-row class="button_box" nzJustify="center">
+        <button class="button-53" role="button" (click)="fileInput.click()">上传数据生成图表</button>
+        <input #fileInput type="file" style="display: none;" accept=".xlsx, .xls, .csv" (change)="onFileChange($event)">
+    </div>
+    <div nz-row class="chart_box" nzJustify="space-around" style="width: 100%;">
+        <div nz-col nzSpan="8" id="lineChart1" style="width: 40rem;height:40rem;"></div>
+        <div nz-col nzSpan="8" id="lineChart2" style="width: 40rem;height:40rem;"></div>
+    </div>
+</div>

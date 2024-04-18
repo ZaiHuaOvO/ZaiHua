@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +32,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-
+import { GlobalErrorHandler } from './global-error-handler.service';
+import { NzFlexModule } from 'ng-zorro-antd/flex';
 registerLocaleData(zh);
 
 @NgModule({
@@ -61,6 +62,7 @@ registerLocaleData(zh);
     NzStepsModule,
     NzMessageModule,
     NzToolTipModule,
+    NzFlexModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -71,7 +73,8 @@ registerLocaleData(zh);
     AppRoutingModule,
   ],
   providers: [
-    { provide: NZ_I18N, useValue: zh_CN }
+    { provide: NZ_I18N, useValue: zh_CN },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

@@ -14,7 +14,7 @@
     <div nz-row [nzGutter]="[16, 24]" *ngFor="let i of wtTarotMinor">
         <ng-container *ngFor="let j of i">
             <div nz-col class="gutter-row" [nzSpan]="2">
-                <button class="button" nz-button nzType="dashed">{{ j.text }}</button>
+                <button class="button" nz-button nzType="dashed" (click)="openDrawer(j)"> {{ j.text }}</button>
             </div>
         </ng-container>
         <nz-divider></nz-divider>
